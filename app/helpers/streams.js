@@ -8,11 +8,13 @@ exports.create = function(self, streamURL, hostname, params) {
   var _ = require('underscore');
 
   var isWin = process.platform === 'win32';
-
-  getport(8889, 8999, function (e, port) {
-    if (e) {
+  getport(geddy.config.streamport, geddy.config.streamport, function (e, port) {
+    if (e && process.env.ISDOCKER != "true") {
       self.redirect('/');
     } else {
+      if (process.env.ISDOCKER == "true") {
+        port = geddy.config.streamport
+      }
       var osSpecificCommand = isWin ? 'cmd' : 'peerflix';
       var osSpecificArgs = isWin ? ['/c', 'peerflix', decodeURIComponent(params.file),  '--port=' + port] : [decodeURIComponent(params.file),  '--port=' + port];
       var childStream = require('child')({

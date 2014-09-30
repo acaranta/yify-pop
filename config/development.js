@@ -22,6 +22,7 @@ var config = {
 , debug: true
 , hostname: null
 , port: 4000
+, streamport: 8889
 , model: {
     defaultAdapter: 'filesystem'
   }

@@ -31,4 +31,23 @@ Getting Started
 
 4. Visit http://localhost:4000 in your browser
 
+Running as a docker container
+-----------------------------
+1. clone this repo
+
+2. Build the image :
+```
+docker build -t yify-pop .
+```
+
+3. run it :
+```
+docker run -d -p 4000:4000 -p 8889:8889 yify-pop
+```
+
+4. if you wish to fix and change the ports :
+```
+docker run -d -e WEBPORT="7001" -e STREAMPORT="7002" -p 7001:7001 -p 7002:7002 yify-pop
+```
+
 Enjoy!
